@@ -1,4 +1,4 @@
-# Django Contact
+# DjToolsContact
 
 DjToolsContact is a simple Django app to manage a company contact information and contacts
 requests from a form
@@ -9,7 +9,7 @@ requests from a form
 ```
 INSTALLED_APPS = [
     ...
-    'contact',
+    'djtools.contact',
 ]
 ```
 
