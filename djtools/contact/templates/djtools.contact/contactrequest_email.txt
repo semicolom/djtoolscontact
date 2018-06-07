@@ -1,8 +1,0 @@
-{% load i18n %}
-{% blocktrans %}{{ object.name }} ha contactado a través de ingeomin.com el {{ object.created }}.{% endblocktrans %}
-
-{% blocktrans %}Su mensaje es:{% endblocktrans %}
-{{ object.message }}
-
-{% blocktrans %}Quiere ser contactado a través de:{% endblocktrans %}
-{{ object.get_contact_information }}

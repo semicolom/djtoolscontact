@@ -65,8 +65,8 @@ class ContactRequest(TimeStampedModel):
 
     def _send_mail(self):
         context = {'object': self}
-        plain_message = render_to_string('contact/contactrequest_email.txt', context)
-        html_message = render_to_string('contact/contactrequest_email.html', context)
+        plain_message = render_to_string('djtools.contact/contactrequest_email.txt', context)
+        html_message = render_to_string('djtools.contact/contactrequest_email.html', context)
 
         send_mail(
             _("Petición de contacto desde {domain}").format(domain=settings.SITE_DOMAIN),
