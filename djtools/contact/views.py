@@ -10,7 +10,7 @@ from .models import ContactRequest, ContactInformation
 class ContactRequestView(CreateView):
     model = ContactRequest
     form_class = ContactRequestForm
-    success_url = reverse_lazy('home')
+    success_url = reverse_lazy('contact')
 
     def form_valid(self, form):
         """

@@ -30,7 +30,7 @@ TEMPLATES = [
 ```
 4. Include the contact URLconf in your project urls.py like this::
 ```
-path('contact/', include('contact.urls')),
+path('contact/', include('djtools.contact.urls')),
 ```
 5. Run `python manage.py migrate` to create the contact models.
 
