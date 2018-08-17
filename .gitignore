@@ -1,5 +1,6 @@
 dist/
 *.egg-info/
-venv/
+venv*/
 __pycache__/
-
+.pytest_cache/
+.tox/
