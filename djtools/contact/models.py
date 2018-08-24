@@ -4,8 +4,6 @@ from django.db import models
 from django.template.loader import render_to_string
 from django.utils.translation import gettext as _
 
-from django_extensions.db.models import TimeStampedModel
-
 
 class ContactInformation(models.Model):
     """
@@ -27,11 +25,13 @@ class ContactInformation(models.Model):
         return self.name
 
 
-class ContactRequest(TimeStampedModel):
+class ContactRequest(models.Model):
     """
     This model will manage the requests from the contact form
     """
 
+    created = models.DateTimeField(_('created'), auto_now_add=True)
+    modified = models.DateTimeField(_('modified'), auto_now=True)
     name = models.CharField(_('nombre'), max_length=255)
     email = models.EmailField(_('email'))
     phone_number = models.CharField(_('teléfono'), max_length=255)
