@@ -1,14 +1,13 @@
 from django.contrib import messages
 from django.urls import reverse_lazy
 from django.utils.translation import gettext as _
-from django.views.generic import CreateView
+from django.views.generic.edit import FormView
 
 from .forms import ContactRequestForm
-from .models import ContactRequest, ContactInformation
+from .services import create_contact_request, get_contact_information
 
 
-class ContactRequestView(CreateView):
-    model = ContactRequest
+class ContactRequestView(FormView):
     form_class = ContactRequestForm
     success_url = reverse_lazy('contact')
 
@@ -17,6 +16,7 @@ class ContactRequestView(CreateView):
         Displays a success message when the form is submitted correctly
         """
 
+        create_contact_request(**form.cleaned_data)
         messages.success(self.request, _("Su petición ha sido enviada correctamente"))
         return super().form_valid(form)
 
@@ -34,9 +34,5 @@ class ContactRequestView(CreateView):
         """
 
         context = super().get_context_data(**kwargs)
-
-        context.update({
-            'contact_information': ContactInformation.objects.get()
-        })
-
+        context['contact_information'] = get_contact_information()
         return context

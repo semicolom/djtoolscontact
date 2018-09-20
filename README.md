@@ -38,3 +38,6 @@ path('contact/', include('djtools.contact.urls')),
    to create add the contact information (you'll need the Admin app enabled).
 
 7. Visit http://127.0.0.1:8000/contact/ to see the contact information and send contact requests.
+
+## References
+https://github.com/pydanny/cookiecutter-djangopackage/

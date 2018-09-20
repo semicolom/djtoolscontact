@@ -1,7 +1,4 @@
-from django.conf import settings
-from django.core.mail import send_mail
 from django.db import models
-from django.template.loader import render_to_string
 from django.utils.translation import gettext as _
 
 
@@ -45,15 +42,8 @@ class ContactRequest(models.Model):
     def __str__(self):
         return self.name
 
-    def save(self, *args, **kwargs):
-        created = self.pk is None
-
-        super().save(*args, **kwargs)
-
-        if created:
-            self._send_mail()
-
-    def get_contact_information(self):
+    @property
+    def contact_information(self):
         if self.email and self.phone_number:
             return _("{email} o {phone_number}").format(
                 email=self.email,
@@ -62,17 +52,3 @@ class ContactRequest(models.Model):
         if self.email:
             return self.email
         return self.phone_number
-
-    def _send_mail(self):
-        context = {'object': self}
-        plain_message = render_to_string('djtools.contact/contactrequest_email.txt', context)
-        html_message = render_to_string('djtools.contact/contactrequest_email.html', context)
-
-        send_mail(
-            _("Petición de contacto desde {domain}").format(domain=settings.SITE_DOMAIN),
-            plain_message,
-            settings.CONTACT_REQUEST_MAIL_FROM,
-            settings.CONTACT_REQUEST_MAIL_TO,
-            fail_silently=False,
-            html_message=html_message,
-        )

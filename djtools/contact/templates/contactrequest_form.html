@@ -1,0 +1,84 @@
+{% extends 'base.html' %}
+{% load i18n bootstrap3 %}
+
+{% block content %}
+  <!-- Contact  -->
+  <div class="row-contact-1">
+      <div class="container">
+          {# Displays django.contrib.messages as Bootstrap alerts #}
+          <div class="row">
+              <div class="col-md-12">
+                  {% bootstrap_messages %}
+              </div>
+          </div>
+
+          <div class="row">
+              <div class="col-md-12">
+                  <div id="map"></div>
+              </div>
+
+              <div class="col-md-3">
+                  <div class="wprt-content-box">
+                      <div class="inner">
+                          <h2 class="font-size-24">{% trans "Contacta con nosotros" %}</h2>
+
+                          <div class="wprt-spacer clearfix" data-desktop="48" data-mobi="25" data-smobi="20"></div>
+
+                          <div class="wprt-list clearfix icon-left has-padding">
+                              <div>
+                                  <span>
+                                      <span class="icon"><i class="fa fa-phone"></i></span>
+                                      <span>
+                                        <a href="tel:{{ contact_information.phone_number }}" title="{{ contact_information.phone_number }}">{{ contact_information.phone_number }}</a>
+                                      </span>
+                                  </span>
+                              </div>
+                          </div>
+
+                          <div class="wprt-list clearfix icon-left has-padding">
+                              <div>
+                                  <span>
+                                      <span class="icon font-size-20"><i class="fa fa-envelope"></i></span>
+                                      <span>
+                                        <a href="mailto:{{ contact_information.email }}" title="{{ contact_information.email }}">{{ contact_information.email }}</a>
+                                      </span>
+                                  </span>
+                              </div>
+                          </div>
+
+                          <div class="wprt-list clearfix icon-left has-padding">
+                              <div>
+                                  <span>
+                                      <span class="icon"><i class="fa fa-map-marker"></i></span>
+                                      <span>{{ contact_information.address | linebreaks }}</span>
+                                  </span>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+
+                  <div class="wprt-spacer clearfix" data-desktop="0" data-mobi="40" data-smobi="40"></div>
+              </div>
+
+              <div class="col-md-1"></div>
+
+              <div class="col-md-8">
+                  <h2 class="font-size-24 margin-bottom-8">{% trans "Envíanos un mensaje" %}</h2>
+
+                  <div class="wprt-spacer clearfix" data-desktop="34" data-mobi="20" data-smobi="20"></div>
+
+                  <form class="contact-form" method="POST" action="{% url 'contact' %}">
+                      {% csrf_token %}
+
+                      {% bootstrap_form form %}
+
+                      {% buttons %}
+                          <button type="submit" class="submit full-width">{% trans "Enviar" %}</button>
+                      {% endbuttons %}
+                  </form>
+              </div>
+          </div><!-- /.row -->
+      </div><!-- /.container -->
+  </div>
+  <!-- /Contact  -->
+{% endblock content %}
