@@ -1,8 +1,6 @@
 ISORT="venv/bin/isort"
 PIP="venv/bin/pip"
-
-TEST_PIP="venv_test/bin/pip"
-TEST_TOX="venv_test/bin/tox"
+TOX="venv/bin/tox"
 
 TMP_PIP="venv_tmp/bin/pip"
 
@@ -23,11 +21,8 @@ virtualenv:
 	$(PIP) install -U "pip"
 	$(PIP) install -r $(REQUIREMENTS_TEST)
 
-test:
-	test -d venv_test || virtualenv -p python3.6 venv_test
-	$(TEST_PIP) install -U "pip"
-	$(TEST_PIP) install tox
-	$(TEST_TOX)
+test: virtualenv
+	$(TOX)
 
 isort: virtualenv
 	$(ISORT) -rc -y djtools/

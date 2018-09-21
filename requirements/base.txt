@@ -1,2 +1,2 @@
 django
-django-recaptcha
+django-recaptcha  # https://github.com/praekelt/django-recaptcha
