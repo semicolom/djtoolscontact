@@ -9,10 +9,7 @@ os.chdir(os.path.normpath(os.path.join(os.path.abspath(__file__), os.pardir)))
 
 setup(
     name='django-tools-contact',
-    version_format='{tag}',
-    setup_requires=[
-        'setuptools-git-version'
-    ],
+    version='0.0.3',
     packages=find_packages(),
     include_package_data=True,
     description='A simple Django app to manage company contact information.',
