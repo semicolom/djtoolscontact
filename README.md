@@ -3,9 +3,11 @@
 Django Tools Contact is a simple Django app to manage a company contact information and contacts
 requests from a form
 
-## Quick start
+## Installation
 
-1. Add "djtools.contact" to your INSTALLED_APPS setting like this::
+1. Install with pip install `django-tools-contact`.
+
+2. Add `djtools.contact` to your INSTALLED_APPS setting like this:
 ```
 INSTALLED_APPS = [
     ...
@@ -13,7 +15,7 @@ INSTALLED_APPS = [
 ]
 ```
 
-2. Add your Google Maps API key nd your contact information in your project settings:
+3. Add your Google Maps API key nd your contact information in your project settings:
 ```
 DJTOOLS_CONTACT_GMAPS_APIKEY = "ABCDE123"
 DJTOOLS_CONTACT_SITE_DOMAIN = "www.example.com"
@@ -22,7 +24,11 @@ DJTOOLS_CONTACT_MAIL_TO = ["admin@example.com"]
 
 ```
 
-3. Add the settings context processor to use the `DJTOOLS_CONTACT_GMAPS_APIKEY` in your templates.
+4. It has a dependency over `django-recaptcha`. Follow their instructions as well:
+[Django ReCaptcha](https://github.com/praekelt/django-recaptcha).
+
+
+5. Add the settings context processor to use the `DJTOOLS_CONTACT_GMAPS_APIKEY` in your templates.
 ```
 TEMPLATES = [
     {
@@ -36,17 +42,24 @@ TEMPLATES = [
 ]
 ```
 
-4. Include the contact URLconf in your project urls.py like this:
+6. You can use the `ContactRequestView` like this:
 ```
-path('contact/', include('djtools.contact.urls')),
+from djtools.contact.views import ContactRequestView
+
+
+urlpatterns = [
+    path('contact/', ContactRequestView.as_view(), name='contact'),
+]
 ```
 
-5. Run `python manage.py migrate` to create the contact models.
+7. Run `python manage.py migrate` to create the contact models.
 
-6. Start the development server and visit http://127.0.0.1:8000/admin/
-   to create add the contact information (you'll need the Admin app enabled).
+8. If you want to show the comapny contact information in the same page as the contact form
+you need to enable this setting `DJTOOLS_CONTACT_INFO=True`, then start the development server and
+visit http://127.0.0.1:8000/admin/ to create add the contact information (you'll need the Admin app
+enabled).
 
-7. Visit http://127.0.0.1:8000/contact/ to see the contact information and send contact requests.
+9. Visit http://127.0.0.1:8000/contact/ to see the contact information and send contact requests.
 
 ## References
 https://github.com/pydanny/cookiecutter-djangopackage/

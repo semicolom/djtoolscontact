@@ -1,4 +1,4 @@
-from django.test import TestCase
+from django.test import TestCase, override_settings
 from djtools.contact import services
 from djtools.contact.models import ContactRequest, ContactInformation
 
@@ -19,6 +19,7 @@ class ServicesTestCase(TestCase):
         self.assertEqual(contact_request.name, "test")
         self.assertEqual(amount_sent_emails, 1)
 
+    @override_settings(DJTOOLS_CONTACT_INFO=True)
     def test_get_contact_information(self):
         old_contact_information = ContactInformation.objects.create(
             longitude=1.1,
@@ -26,3 +27,6 @@ class ServicesTestCase(TestCase):
         )
         new_contact_information = services.get_contact_information()
         self.assertEqual(old_contact_information, new_contact_information)
+
+    def test_get_contact_information_dissabled(self):
+        self.assertIsNone(services.get_contact_information())

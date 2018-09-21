@@ -13,13 +13,17 @@ def _send_mail(contact_request):
     Retruns the amount of sent emails.
     """
 
+    site_domain = settings.DJTOOLS_CONTACT_SITE_DOMAIN
     message = render_to_string(
-        'contactrequest_email.html',
-        {'object': contact_request}
+        'djtools/contact/contactrequest_email.html',
+        {
+            'object': contact_request,
+            'DJTOOLS_CONTACT_SITE_DOMAIN': site_domain
+        }
     )
 
     return send_mail(
-        _("Petición de contacto desde {}").format(settings.DJTOOLS_CONTACT_SITE_DOMAIN),
+        _("Petición de contacto desde {}").format(site_domain),
         message,
         settings.DJTOOLS_CONTACT_MAIL_FROM,
         settings.DJTOOLS_CONTACT_MAIL_TO,
@@ -27,9 +31,10 @@ def _send_mail(contact_request):
     )
 
 
-def create_contact_request(name, email, phone_number, message):
+def create_contact_request(name, email, phone_number, message, captcha=None):
     """
     Creates a new instance of ContactRequest and sends a notification email.
+    captcha argument can be ignored
     """
 
     contact_request = ContactRequest.objects.create(
@@ -47,4 +52,5 @@ def get_contact_information():
     Returns the only one Contact Information instance.
     """
 
-    return ContactInformation.objects.get()
+    if getattr(settings, 'DJTOOLS_CONTACT_INFO', False):
+        return ContactInformation.objects.get()

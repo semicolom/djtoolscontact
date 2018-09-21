@@ -9,6 +9,7 @@ from .services import create_contact_request, get_contact_information
 
 class ContactRequestView(FormView):
     form_class = ContactRequestForm
+    template_name = 'djtools/contact/contactrequest_form.html'
     success_url = reverse_lazy('contact')
 
     def form_valid(self, form):
