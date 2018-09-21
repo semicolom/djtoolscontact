@@ -10,6 +10,7 @@ REQUIREMENTS_TEST:=requirements/test.txt
 .PHONY: requirements
 
 clean:
+	@find . -name *.pyc -delete
 	@rm -rf venv_tmp
 	@rm -rf venv
 
