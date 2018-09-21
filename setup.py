@@ -16,6 +16,9 @@ setup(
     long_description=README,
     author='Toni Colom',
     author_email='toni@semicolom.com',
+    install_requires=[
+        'django-recaptcha',
+    ],
     classifiers=[
         'Environment :: Web Environment',
         'Framework :: Django',
