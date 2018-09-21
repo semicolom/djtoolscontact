@@ -9,6 +9,10 @@ REQUIREMENTS_TEST:=requirements/test.txt
 
 .PHONY: requirements
 
+clean:
+	@rm -rf venv_tmp
+	@rm -rf venv
+
 requirements:
 	virtualenv -p python3.6 venv_tmp
 	$(TMP_PIP) install -U "pip"

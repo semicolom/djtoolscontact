@@ -8,14 +8,14 @@ with open(os.path.join(os.path.dirname(__file__), 'README.md')) as readme:
 os.chdir(os.path.normpath(os.path.join(os.path.abspath(__file__), os.pardir)))
 
 setup(
-    name='djtoolscontact',
-    version='1.0.0',
+    name='django-tools-contact',
+    version='0.0.1',
     packages=find_packages(),
     include_package_data=True,
     description='A simple Django app to manage company contact information.',
     long_description=README,
     author='Toni Colom',
-    author_email='tcolomquetglas@gmail.com',
+    author_email='toni@semicolom.com',
     classifiers=[
         'Environment :: Web Environment',
         'Framework :: Django',

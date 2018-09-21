@@ -1,11 +1,11 @@
-# DjToolsContact
+# Django Tools Contact
 
-DjToolsContact is a simple Django app to manage a company contact information and contacts
+Django Tools Contact is a simple Django app to manage a company contact information and contacts
 requests from a form
 
 ## Quick start
 
-1. Add "contact" to your INSTALLED_APPS setting like this::
+1. Add "djtools.contact" to your INSTALLED_APPS setting like this::
 ```
 INSTALLED_APPS = [
     ...
@@ -13,9 +13,16 @@ INSTALLED_APPS = [
 ]
 ```
 
-2. Add your Google Maps API key in your project settings GOOGLE_MAPS_API_KEY
+2. Add your Google Maps API key nd your contact information in your project settings:
+```
+DJTOOLS_CONTACT_GMAPS_APIKEY = "ABCDE123"
+DJTOOLS_CONTACT_SITE_DOMAIN = "www.example.com"
+DJTOOLS_CONTACT_MAIL_FROM = "no-reply@example.com"
+DJTOOLS_CONTACT_MAIL_TO = ["admin@example.com"]
 
-3. Add the settings context processor to use the `GOOGLE_MAPS_API_KEY` in your templates.
+```
+
+3. Add the settings context processor to use the `DJTOOLS_CONTACT_GMAPS_APIKEY` in your templates.
 ```
 TEMPLATES = [
     {
@@ -28,10 +35,12 @@ TEMPLATES = [
     },
 ]
 ```
-4. Include the contact URLconf in your project urls.py like this::
+
+4. Include the contact URLconf in your project urls.py like this:
 ```
 path('contact/', include('djtools.contact.urls')),
 ```
+
 5. Run `python manage.py migrate` to create the contact models.
 
 6. Start the development server and visit http://127.0.0.1:8000/admin/
