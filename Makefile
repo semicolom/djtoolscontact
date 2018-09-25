@@ -5,7 +5,7 @@ TWINE="venv/bin/twine"
 
 clean:
 	@find . -name *.pyc -delete
-	@rm -rf venv
+	@rm -rf venv dist build *.egg-info
 
 virtualenv:
 	test -d venv || virtualenv -p python3.6 venv
@@ -15,7 +15,7 @@ test: virtualenv
 	$(PIP) install -U tox
 	$(TOX)
 
-publish: virtualenv
+publish: clean virtualenv
 	$(PIP) install -U setuptools wheel twine
 	$(PYTHON) setup.py sdist bdist_wheel
 	$(TWINE) upload dist/*
