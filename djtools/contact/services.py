@@ -15,7 +15,7 @@ def _send_mail(contact_request):
 
     site_domain = settings.DJTOOLS_CONTACT_SITE_DOMAIN
     message = render_to_string(
-        'djtools/contact/contactrequest_email.html',
+        'djtools/contact/contactrequest_email.txt',
         {
             'object': contact_request,
             'DJTOOLS_CONTACT_SITE_DOMAIN': site_domain
@@ -23,10 +23,10 @@ def _send_mail(contact_request):
     )
 
     return send_mail(
-        _("Petición de contacto desde {}").format(site_domain),
-        message,
-        settings.DJTOOLS_CONTACT_MAIL_FROM,
-        settings.DJTOOLS_CONTACT_MAIL_TO,
+        subject=_("Petición de contacto desde {}").format(site_domain),
+        message=message,
+        from_email=settings.DJTOOLS_CONTACT_MAIL_FROM,
+        recipient_list=settings.DJTOOLS_CONTACT_MAIL_TO,
         fail_silently=False,
     )
 
