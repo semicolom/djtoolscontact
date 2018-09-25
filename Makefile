@@ -11,7 +11,7 @@ virtualenv:
 	test -d venv || virtualenv -p python3.6 venv
 	$(PIP) install -U pip
 
-test: virtualenv
+test: clean virtualenv
 	$(PIP) install -U tox
 	$(TOX)
 

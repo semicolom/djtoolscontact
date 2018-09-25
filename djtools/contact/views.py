@@ -1,8 +1,8 @@
+from django.conf import settings
 from django.contrib import messages
 from django.urls import reverse_lazy
 from django.utils.translation import gettext as _
 from django.views.generic.edit import FormView
-from django.conf import settings
 
 from .forms import ContactRequestForm
 from .services import create_contact_request, get_contact_information
