@@ -2,6 +2,7 @@ from django.contrib import messages
 from django.urls import reverse_lazy
 from django.utils.translation import gettext as _
 from django.views.generic.edit import FormView
+from django.conf import settings
 
 from .forms import ContactRequestForm
 from .services import create_contact_request, get_contact_information
@@ -35,5 +36,8 @@ class ContactRequestView(FormView):
         """
 
         context = super().get_context_data(**kwargs)
-        context['contact_information'] = get_contact_information()
+        context.update({
+            'contact_information': get_contact_information(),
+            'GMAPS_APIKEY': settings.DJTOOLS_CONTACT_GMAPS_APIKEY,
+        })
         return context

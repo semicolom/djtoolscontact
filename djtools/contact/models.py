@@ -11,8 +11,8 @@ class ContactInformation(models.Model):
     address = models.TextField(_('dirección'))
     phone_number = models.CharField(_('teléfono'), max_length=255)
     email = models.EmailField(_('email'))
-    longitude = models.DecimalField(_('longitud'), max_digits=11, decimal_places=8)
     latitude = models.DecimalField(_('latitud'), max_digits=11, decimal_places=8)
+    longitude = models.DecimalField(_('longitud'), max_digits=11, decimal_places=8)
 
     class Meta:
         verbose_name = _("Información de contacto")
