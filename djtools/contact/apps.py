@@ -6,6 +6,7 @@ from django.core.exceptions import ImproperlyConfigured
 class ContactConfig(AppConfig):
     name = 'djtools.contact'
     label = 'djtools.contact'
+    verbose_name = 'Contact'
 
     def ready(self):
         if not hasattr(settings, 'DJTOOLS_CONTACT_SITE_DOMAIN'):
