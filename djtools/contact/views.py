@@ -4,12 +4,11 @@ from django.urls import reverse_lazy
 from django.utils.translation import gettext as _
 from django.views.generic.edit import FormView
 
-from .forms import ContactRequestForm
-from .services import create_contact_request, get_contact_information
+from . import forms, services
 
 
 class ContactRequestView(FormView):
-    form_class = ContactRequestForm
+    form_class = forms.ContactRequestForm
     template_name = 'djtools/contact/contactrequest_form.html'
     success_url = reverse_lazy('contact')
 
@@ -18,7 +17,7 @@ class ContactRequestView(FormView):
         Displays a success message when the form is submitted correctly
         """
 
-        create_contact_request(**form.cleaned_data)
+        services.create_contact_request(**form.cleaned_data)
         messages.success(self.request, _("Su petición ha sido enviada correctamente"))
         return super().form_valid(form)
 
@@ -37,7 +36,7 @@ class ContactRequestView(FormView):
 
         context = super().get_context_data(**kwargs)
         context.update({
-            'contact_information': get_contact_information(),
+            'contact_information': services.get_contact_information(),
             'GMAPS_APIKEY': settings.DJTOOLS_CONTACT_GMAPS_APIKEY,
         })
         return context
