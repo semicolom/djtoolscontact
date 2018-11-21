@@ -9,7 +9,11 @@ class ContactInformation(models.Model):
 
     name = models.CharField(_('nombre'), max_length=255)
     address = models.TextField(_('dirección'))
-    phone_number = models.CharField(_('teléfono'), max_length=255)
+    phone_number = models.CharField(
+        _('teléfono'),
+        max_length=255,
+        help_text="Si hay me de uno, separar con comas"
+    )
     email = models.EmailField(_('email'))
     latitude = models.DecimalField(_('latitud'), max_digits=11, decimal_places=8)
     longitude = models.DecimalField(_('longitud'), max_digits=11, decimal_places=8)
@@ -20,6 +24,12 @@ class ContactInformation(models.Model):
 
     def __str__(self):
         return self.name
+
+    def get_phone_number(self):
+        """
+        Returns the phone_number in a list form.
+        """
+        return [phone.strip() for phone in self.phone_number.split(',')]
 
 
 class ContactRequest(models.Model):

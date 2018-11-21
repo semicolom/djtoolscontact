@@ -1,5 +1,22 @@
 from django.test import TestCase
-from djtools.contact.models import ContactRequest
+from djtools.contact.models import ContactRequest, ContactInformation
+
+
+class ContactInformationTestCase(TestCase):
+    def test_get_phone_number_one_number(self):
+        info = ContactInformation(phone_number="555-123-123")
+        phone_list = info.get_phone_number()
+        self.assertListEqual(phone_list, ["555-123-123"])
+
+    def test_get_phone_number_multiple_numbers(self):
+        info = ContactInformation(phone_number="555-123-123,555-124-555")
+        phone_list = info.get_phone_number()
+        self.assertListEqual(phone_list, ["555-123-123", "555-124-555"])
+
+    def test_get_phone_number_with_whitespaces(self):
+        info = ContactInformation(phone_number=" 555-123-123 , 555-124-555 ")
+        phone_list = info.get_phone_number()
+        self.assertListEqual(phone_list, ["555-123-123", "555-124-555"])
 
 
 class ContactRequestTestCase(TestCase):
