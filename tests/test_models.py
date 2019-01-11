@@ -18,6 +18,14 @@ class ContactInformationTestCase(TestCase):
         phone_list = info.get_phone_number()
         self.assertListEqual(phone_list, ["555-123-123", "555-124-555"])
 
+    def test_latitude(self):
+        info = ContactInformation(phone_number="555-123-123", latitude='1,00')
+        self.assertEqual(info.get_latitude(), '1.00')
+
+    def test_longitude(self):
+        info = ContactInformation(phone_number="555-123-123", longitude='1,00')
+        self.assertEqual(info.get_longitude(), '1.00')
+
 
 class ContactRequestTestCase(TestCase):
     def test_get_contact_information_only_phone(self):

@@ -1,8 +1,8 @@
 <script>
     function initMap() {
         var location = {
-            lat: {{ contact_information.latitude }},
-            lng: {{ contact_information.longitude }}
+            lat: {{ contact_information.get_latitude }},
+            lng: {{ contact_information.get_longitude }}
         };
         var map = new google.maps.Map(document.getElementById('contact_map'), {
             zoom: 14,
