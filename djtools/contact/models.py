@@ -31,12 +31,6 @@ class ContactInformation(models.Model):
         """
         return [phone.strip() for phone in self.phone_number.split(',')]
 
-    def get_latitude(self):
-        return self.latitude.replace(',', '.')
-
-    def get_longitude(self):
-        return self.longitude.replace(',', '.')
-
 
 class ContactRequest(models.Model):
     """
