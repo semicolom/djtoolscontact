@@ -13,7 +13,7 @@
     {% if contact_information %}
         <div class="contact_info">
             {% for phone in contact_information.get_phone_number %}
-                <a href="mailto:{{ phone }}" title="{{ phone }}">{{ phone }}</a>{% if not forloop.last %}, {% endif %}
+                <a href="tel:{{ phone|cut:" " }}" title="{{ phone }}">{{ phone }}</a>{% if not forloop.last %}, {% endif %}
             {% endfor %}
             <a href="mailto:{{ contact_information.email }}" title="{{ contact_information.email }}">{{ contact_information.email }}</a>
             <span>{{ contact_information.address | linebreaks }}</span>
