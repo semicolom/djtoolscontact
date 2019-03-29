@@ -27,6 +27,6 @@ class ContactRequestForm(forms.ModelForm):
         cleaned_data = super().clean()
 
         if not cleaned_data.get('email') and not cleaned_data.get('phone_number'):
-            raise forms.ValidationError(_("El email o el teléfono son obligatorios."))
+            raise forms.ValidationError(_("Email or phone number are required."))
 
         return cleaned_data

@@ -18,7 +18,7 @@ class ContactRequestView(FormView):
         """
 
         services.create_contact_request(**form.cleaned_data)
-        messages.success(self.request, _("Su petición ha sido enviada correctamente"))
+        messages.success(self.request, _("Your request has been submitted."))
         return super().form_valid(form)
 
     def form_invalid(self, form):
@@ -26,7 +26,7 @@ class ContactRequestView(FormView):
         Displays an error message when the form is submitted with errors
         """
 
-        messages.error(self.request, _("Revise los errores del formulario"))
+        messages.error(self.request, _("Please, check the form errors."))
         return super().form_invalid(form)
 
     def get_context_data(self, **kwargs):

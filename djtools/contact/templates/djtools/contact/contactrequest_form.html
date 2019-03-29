@@ -24,6 +24,6 @@
     <form method="POST" action="{% url 'contact' %}">
         {% csrf_token %}
         {{ form }}
-        <button type="submit">{% trans "Enviar" %}</button>
+        <button type="submit">{% trans "Send" %}</button>
     </form>
 {% endblock content %}

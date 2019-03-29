@@ -7,20 +7,20 @@ class ContactInformation(models.Model):
     This model will store the comapny places to be shown in a contact page
     """
 
-    name = models.CharField(_('nombre'), max_length=255)
-    address = models.TextField(_('dirección'))
+    name = models.CharField(_('name'), max_length=255)
+    address = models.TextField(_('address'))
     phone_number = models.CharField(
-        _('teléfono'),
+        _('phone number'),
         max_length=255,
-        help_text="Si hay me de uno, separar con comas"
+        help_text=_("If there are more than one, separate them with commas"),
     )
     email = models.EmailField(_('email'))
-    latitude = models.DecimalField(_('latitud'), max_digits=11, decimal_places=8)
-    longitude = models.DecimalField(_('longitud'), max_digits=11, decimal_places=8)
+    latitude = models.DecimalField(_('latitude'), max_digits=11, decimal_places=8)
+    longitude = models.DecimalField(_('longitude'), max_digits=11, decimal_places=8)
 
     class Meta:
-        verbose_name = _("Información de contacto")
-        verbose_name_plural = _("Informaciones de contacto")
+        verbose_name = _("Contact information")
+        verbose_name_plural = _("Contact informations")
 
     def __str__(self):
         return self.name
@@ -39,15 +39,15 @@ class ContactRequest(models.Model):
 
     created = models.DateTimeField(_('created'), auto_now_add=True)
     modified = models.DateTimeField(_('modified'), auto_now=True)
-    name = models.CharField(_('nombre'), max_length=255)
+    name = models.CharField(_('name'), max_length=255)
     email = models.EmailField(_('email'))
-    phone_number = models.CharField(_('teléfono'), max_length=255)
-    message = models.TextField(_('mensaje'))
-    contacted = models.BooleanField(_('contactado'), default=False)
+    phone_number = models.CharField(_('phone number'), max_length=255)
+    message = models.TextField(_('message'))
+    contacted = models.BooleanField(_('contacted'), default=False)
 
     class Meta:
-        verbose_name = _("Petición de contacto")
-        verbose_name_plural = _("Peticiones de contacto")
+        verbose_name = _("Contact request")
+        verbose_name_plural = _("Contact requests")
 
     def __str__(self):
         return self.name
@@ -55,7 +55,7 @@ class ContactRequest(models.Model):
     @property
     def contact_information(self):
         if self.email and self.phone_number:
-            return _("{email} o {phone_number}").format(
+            return _("{email} or {phone_number}").format(
                 email=self.email,
                 phone_number=self.phone_number
             )

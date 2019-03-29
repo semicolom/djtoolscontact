@@ -23,7 +23,7 @@ def _send_mail(contact_request):
     )
 
     return send_mail(
-        subject=_("Petición de contacto desde {}").format(site_domain),
+        subject=_(f"You have a contact request from {site_domain}"),
         message=message,
         from_email=settings.DJTOOLS_CONTACT_MAIL_FROM,
         recipient_list=settings.DJTOOLS_CONTACT_MAIL_TO,
