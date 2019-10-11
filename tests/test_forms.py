@@ -15,7 +15,7 @@ class ContactRequestFormTestCase(TestCase):
             'message': "Test",
             'email': "test@example.com",
             'phone_number': "555-123",
-            'recaptcha_response_field': 'PASSED'
+            'g-recaptcha-response': 'PASSED',
         })
         self.assertTrue(form.is_valid())
 
@@ -24,7 +24,7 @@ class ContactRequestFormTestCase(TestCase):
             'name': "Test",
             'message': "Test",
             'email': "test@example.com",
-            'recaptcha_response_field': 'PASSED'
+            'g-recaptcha-response': 'PASSED',
         })
         self.assertTrue(form.is_valid())
 
@@ -32,12 +32,12 @@ class ContactRequestFormTestCase(TestCase):
         form = ContactRequestForm({
             'name': "Test",
             'message': "Test",
-            'recaptcha_response_field': 'PASSED'
+            'g-recaptcha-response': 'PASSED',
         })
         self.assertFalse(form.is_valid())
         self.assertEqual(
             form.errors,
-            {'__all__': ["El email o el teléfono son obligatorios."]}
+            {'__all__': ["Email or phone number are required."]}
         )
 
     def tearDown(self):
