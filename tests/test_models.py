@@ -45,5 +45,5 @@ class ContactRequestTestCase(TestCase):
 
         self.assertEqual(
             contact_request.contact_information,
-            "test@test.com o 555-123"
+            "test@test.com or 555-123"
         )
